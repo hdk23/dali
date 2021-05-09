@@ -1,0 +1,71 @@
+Problem Set 5 Discussion
+
+File-Driven Testing
+
+Test File
+When I ran the test file, I got 31/37 correct, which is one shy of the sample solution, but still pretty accurate.
+(I confirmed with another TA that should be good enough.)
+
+The program incorrectly identified words for the following:
+COMPARING pro AND det FOR THE WORD the
+COMPARING . AND v FOR THE WORD saw
+COMPARING det AND p FOR THE WORD to
+COMPARING n AND v FOR THE WORD bark
+COMPARING det AND p FOR THE WORD to
+COMPARING n AND v FOR THE WORD bark
+
+As seen in the data, the program made mistakes for the same words twice for two words.
+For the word "bark," bark is used as a noun and a verb in the training data, so there is an ambiguity.
+For the word "to," determiners often precede nouns, and the word to was also not found in the training data.
+Most of the sentences also started with pronouns instead of determiners in the training data, which may have influenced the test as well.
+The . for a verb is a quirk that does not seem to have a particular pattern. It's not perfect after all!
+
+Brown
+When I ran the Brown test file, I got 35077/36394 (96.38%) correct, less than 0.1% off from the sample solution's 96.47%.
+The longer test file may have made each error count less, explaining the higher accuracy rate.
+There are more sentences to use as data.
+
+Console-Driven Testing
+
+Test Case #1: all based on words in the training data but never put together before
+Try:  we bark for the trains (pro v p det n .)
+6 OUT OF 6
+There are no observation penalties in this sentence, so the program could smoothly transfer its knowledge from the training.
+
+Test Case #2: parallel structure to training data
+Try: our outfits are fashionable. (pro n v adj .)
+5 OUT OF 5
+The program is familiar with this progression of words, so
+
+Test Case #3: ambiguous parts of speech
+Try: I hate to work on work (pro v p v p n .)
+COMPARING pro AND p FOR THE WORD to
+COMPARING det AND p FOR THE WORD on
+5 OUT OF 7
+Surprisingly, this program did not have errors with the word "work" despite the ambiguity.
+This sentence had a common error with prepositions like other samples.
+
+
+Test Case #4: same sentence as test data
+Try: the dog saw trains in the night . (DET N V N P DET N .)
+COMPARING pro AND det FOR THE WORD the
+COMPARING . AND v FOR THE WORD saw
+6 OUT OF 8 (same mistakes as file-driven testing)
+
+
+Test Case #5: multiple sentences
+Try: you go to dartmouth . i thought dartmouth students were smarter .
+
+COMPARING det AND p FOR THE WORD to
+COMPARING n AND v FOR THE WORD thought
+COMPARING v AND n FOR THE WORD dartmouth
+COMPARING p AND n FOR THE WORD students
+COMPARING det AND v FOR THE WORD were
+COMPARING n AND adj FOR THE WORD smarter
+
+6 OUT OF 12
+This sentence had more errors because of two consecutive nouns and its general complexity.
+Most of the other sentences were still pretty accurate.
+
+Test Case #6: same paragraph as test data
+same results as file-driven testing
